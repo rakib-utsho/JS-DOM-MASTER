@@ -53,6 +53,7 @@ input[type='text']:disabled{
     border-radius: 0.25rem;
     padding: 1rem 2rem;
     cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .toast-message-slide-in {
@@ -63,10 +64,30 @@ input[type='text']:disabled{
     animation: toast-animation-out 0.5s ease-in;
 }
 
-@
+@keyframes toast-message-slide-in{
+    form{
+        transform: translateX(200px);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes toast-message-slide-out{
+    form{
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to{
+        transform: translateX(200px);
+        opacity: 0;      
+    }
+}
 
 .change-color{
-    padding: .75rem 2rem;
+    padding: 1.5rem 4rem;
     margin: 1rem 0;
     outline: 0;
     background-color: #000;
