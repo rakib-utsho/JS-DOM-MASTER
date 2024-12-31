@@ -6,6 +6,9 @@
  * - Add a Tost Message Copied
  */
 
+// Globals
+let div = null;
+
 // step 1 - create onload handler
 window.onload = () =>{
     main();
@@ -29,6 +32,10 @@ function main(){
     // step 5 - handel the copy click event
     copyBTN.addEventListener('click', function () {
         navigator.clipboard.writeText(output.value);
+        if(div != null){
+            div.remove();
+            div = null;
+        }
         // Activate tost message
         generateToastMessage(`${output.value} copied`)
     })
@@ -46,9 +53,21 @@ function generateHEXColor(){
 }
 
 function generateToastMessage(msg){
-    const div = document.createElement('div');
+    div = document.createElement('div');
     div.innerText = msg;
-    div.className = 'toast-message'
+    div.className = 'toast-message toast-message-slide-in';
+
+    div.addEventListener('click', function(){
+        div.classList.remove('toast-message-slide-in');
+        div.classList.add('toast-message-slide-out');
+
+        div. addEventListener('animationend', function() {
+            div.remove();
+            div = null;
+        });
+    });
+
+
 
     document.body.appendChild(div);
 }

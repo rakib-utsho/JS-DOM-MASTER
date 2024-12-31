@@ -57,15 +57,15 @@ input[type='text']:disabled{
 }
 
 .toast-message-slide-in {
-    animation: toast-animation-in 0.5s ease-in;
+    animation: toast-animation-in 0.6s ease-in;
 }
 
 .toast-message-slide-out {
-    animation: toast-animation-out 0.5s ease-in;
+    animation: toast-animation-out 0.6s ease-in;
 }
 
-@keyframes toast-message-slide-in{
-    form{
+@keyframes toast-animation-in{
+    from{
         transform: translateX(200px);
         opacity: 0;
     }
@@ -75,8 +75,8 @@ input[type='text']:disabled{
     }
 }
 
-@keyframes toast-message-slide-out{
-    form{
+@keyframes toast-animation-out{
+    from{
         transform: translateX(0);
         opacity: 1;
     }
