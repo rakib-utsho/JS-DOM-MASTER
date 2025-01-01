@@ -37,8 +37,22 @@ function main(){
             div.remove();
             div = null;
         }
-        // step 6 Activate tost message
-        generateToastMessage(`${output.value} copied`)
+        // step 11 - prevent copying hex code if it is not valid
+        if(isHexValid(output.value)){
+            // step 6 Activate tost message
+            generateToastMessage(`${output.value} copied`)
+        }else{
+            alert('Invalid Color Code')
+        }
+        
+    });
+
+    // step 10 - implement change handler on input field
+    output.addEventListener('keyup', function(e){
+        const color = e.target.value;
+        if(color && isHexValid(color)) {
+            root.style.backgroundColor = color;
+        }
     })
 }
 
@@ -62,7 +76,7 @@ function generateToastMessage(msg){
     div.addEventListener('click', function(){
         div.classList.remove('toast-message-slide-in');
         div.classList.add('toast-message-slide-out');
-            // step 8 clear toast message
+            // step 8 - clear toast message
         div. addEventListener('animationend', function() {
             div.remove();
             div = null;
@@ -70,5 +84,20 @@ function generateToastMessage(msg){
     });
     document.body.appendChild(div);
 }
+// step 9 - create isHexValid Function
+/**
+@param {string} color: ;
+*/
+function isHexValid(color){
+    if(color.length != 7) return false;
+    if(color[0] != '#') return false;
 
-// step - 9 create isHexValid Function
+    color = color.substring(1);
+    // regex object {Regular Expression Object}
+    return /^[0-9A-Fa-f]{6}$/i.test(color);
+}
+
+
+
+
+
